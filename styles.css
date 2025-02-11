@@ -1,0 +1,344 @@
+/* Importar fuente */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+/* Regla para usuarios que prefieren reducir animaciones */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Estilos generales */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(180deg, #2C2C2C 0%, #3F3F3F 100%);
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-size: 400% 400%;
+  animation: gradientShift 30s ease-in-out infinite;
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Contenedor principal con animación sutil */
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  animation: floatyTilt 8s ease-in-out infinite, fadeInUp 1s ease forwards;
+}
+@keyframes floatyTilt {
+  0% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-8px) rotate(1.5deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(-5px) rotate(-1.5deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Perfil */
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid white;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.profile-pic:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Cambiador de idioma */
+.lang-switch {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 6px 12px;
+  transition: background 0.3s, transform 0.2s;
+}
+.lang-btn:hover {
+  transform: scale(1.05);
+  background: #00ffa2;
+  color: #2C2C2C;
+}
+.lang-btn.active {
+  background: #00ffa2;
+  color: #2C2C2C;
+}
+
+/* Botón de LinkedIn */
+.linkedin-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px 0;
+  color: white;
+  background: #0077B5;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.3s;
+}
+.linkedin-btn:hover {
+  background: #005a8c;
+  transform: scale(1.05);
+}
+
+/* Botones para secciones y utilidades */
+.buttons { margin-top: 20px; }
+.toggle-btn {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.2);
+  transition: background 0.3s, transform 0.2s;
+  animation: pulseBtn 3s infinite ease-in-out;
+}
+@keyframes pulseBtn {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.01); }
+  100% { transform: scale(1); }
+}
+.toggle-btn:hover {
+  background: #00ffa2;
+  color: #2C2C2C;
+  transform: scale(1.02);
+}
+.glow {
+  animation: softGlow 3s ease-in-out infinite;
+}
+@keyframes softGlow {
+  0% { box-shadow: 0 0 0px #fff, 0 0 0px #00ffa2, 0 0 1px #00ffa2; }
+  50% { box-shadow: 0 0 2px #fff, 0 0 3px #00ffa2, 0 0 5px #00ffa2; }
+  100% { box-shadow: 0 0 0px #fff, 0 0 0px #00ffa2, 0 0 1px #00ffa2; }
+}
+.toggle-btn:active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: ripple 0.6s ease-out;
+  pointer-events: none;
+}
+@keyframes ripple {
+  0% { transform: translate(-50%, -50%) scale(0.2); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+}
+
+/* Secciones colapsables */
+.info-box {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin-top: 5px;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 0 20px;
+  transition: max-height 0.7s ease, opacity 0.7s ease, padding 0.7s ease;
+  text-align: left;
+}
+.info-box.visible {
+  opacity: 1;
+  padding: 20px;
+  max-height: 1000px;
+}
+.info-item {
+  background: rgba(255,255,255,0.05);
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.05);
+  transition: transform 0.3s, background 0.3s;
+  opacity: 0;
+  transform: translateY(15px);
+}
+.info-box.visible .info-item {
+  animation: fadeInSlide 0.6s forwards;
+}
+.info-box.visible .info-item:nth-child(1) { animation-delay: 0.1s; }
+.info-box.visible .info-item:nth-child(2) { animation-delay: 0.2s; }
+.info-box.visible .info-item:nth-child(3) { animation-delay: 0.3s; }
+.info-box.visible .info-item:nth-child(4) { animation-delay: 0.4s; }
+.info-box.visible .info-item:nth-child(5) { animation-delay: 0.5s; }
+@keyframes fadeInSlide {
+  to { opacity: 1; transform: translateY(0); }
+}
+.info-item:hover {
+  background: rgba(255,255,255,0.1);
+  transform: scale(1.02);
+}
+h3 {
+  font-weight: 700;
+  transition: transform 0.3s, color 0.3s;
+}
+h3:hover {
+  color: #00ffa2;
+  transform: scale(1.05);
+}
+
+/* Contacto y animaciones de pulsado */
+@keyframes subtlePulse {
+  0% { color: #fff; transform: scale(1); }
+  50% { color: #00ffa2; transform: scale(1.05); }
+  100% { color: #fff; transform: scale(1); }
+}
+.pulseData { animation: subtlePulse 3s infinite ease-in-out; }
+
+/* Formulario de contacto */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+label {
+  font-weight: 400;
+  margin-bottom: 5px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+label:hover {
+  color: #00ffa2;
+  transform: scale(1.03);
+}
+input, textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+input[type="submit"] {
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #00ffa2;
+  color: #2C2C2C;
+  transition: background 0.3s, transform 0.2s;
+}
+input[type="submit"]:hover {
+  background-color: #00d68e;
+  transform: scale(1.03);
+}
+.error-message {
+  color: #ff6b6b;
+  font-weight: bold;
+  margin-top: 5px;
+  display: none;
+}
+.error-message.visible { display: block; }
+
+/* Botones de utilidades */
+.utility-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+.utility-buttons button {
+  margin: 0 5px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  position: relative;
+}
+#toggleAll:hover {
+  background: #FFC107;
+  color: #2C2C2C;
+}
+#printBtn:hover {
+  background: #8B5CF6;
+  color: #2C2C2C;
+}
+.utility-buttons button:active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: ripple 0.6s ease-out;
+  pointer-events: none;
+}
+
+/* Estilos para impresión */
+@media print {
+  .lang-switch, .utility-buttons, .toggle-btn, .linkedin-btn {
+    display: none !important;
+  }
+  body {
+    background: white;
+    color: black;
+  }
+  .container {
+    box-shadow: none;
+    background-color: white;
+  }
+}
+
+/* Mensaje de éxito */
+.successMsg {
+  display: none;
+  text-align: center;
+  background: rgba(0, 255, 162, 0.2);
+  color: #00ffa2;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 10px;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.successMsg.visible {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
