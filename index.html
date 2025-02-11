@@ -18,6 +18,12 @@
         <button class="lang-btn" id="langEs" aria-label="Cambiar a español"><span>🇪🇸</span>Español</button>
       </div>
 
+      <!-- Menú de versiones -->
+      <div class="version-switch">
+        <button class="version-btn" id="versionDefault" aria-label="Switch to Default Version">Default Version</button>
+        <button class="version-btn" id="versionAlt" aria-label="Switch to Alternative Version">Alternative Version</button>
+      </div>
+
       <header>
         <img src="profile.jpg" alt="Juan Tricoli" class="profile-pic">
         <h1 id="titleName"><strong>Juan Tricoli</strong></h1>
@@ -75,4 +81,45 @@
         <div id="languages" class="info-box">
           <div class="info-item"><p id="lang1"></p></div>
           <div class="info-item"><p id="lang2"></p></div>
-      
+        </div>
+
+        <!-- PROYECTOS -->
+        <button class="toggle-btn glow" data-target="projects" id="btnProjects" aria-expanded="false"></button>
+        <div id="projects" class="info-box">
+          <h3 id="projectsHeader"></h3>
+          <div class="info-item"><p id="proj1"></p></div>
+          <div class="info-item"><p id="proj2"></p></div>
+          <div class="info-item"><p id="proj3"></p></div>
+        </div>
+
+        <!-- CONTACTO -->
+        <button class="toggle-btn glow" data-target="contact" id="btnContact" aria-expanded="false"></button>
+        <div id="contact" class="info-box">
+          <div class="info-item">
+            <h3 id="contactHeader"></h3>
+            <p id="contactDesc"></p>
+            <form id="theContactForm" novalidate>
+              <label for="name" id="lblName"></label>
+              <input type="text" id="name" name="name" required>
+
+              <label for="phone" id="lblPhone"></label>
+              <input type="tel" id="phone" name="phone" placeholder="e.g. 11 6567-7996" required>
+
+              <label for="email" id="lblEmail"></label>
+              <input type="email" id="email" name="email" required>
+
+              <label for="message" id="lblMessage"></label>
+              <textarea id="message" name="message" rows="4"></textarea>
+
+              <input type="submit" id="btnSubmit" value="Send Message">
+              <div class="error-message" id="formErrorMsg"></div>
+            </form>
+            <!-- Mensaje de éxito -->
+            <div class="successMsg" id="successMsg" aria-live="polite">Message sent successfully!</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
