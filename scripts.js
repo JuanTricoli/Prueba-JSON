@@ -67,10 +67,6 @@ const formErrorMsg = document.getElementById('formErrorMsg');
 const langEn = document.getElementById('langEn');
 const langEs = document.getElementById('langEs');
 
-// Botones de versión
-const versionDefault = document.getElementById('versionDefault');
-const versionAlt = document.getElementById('versionAlt');
-
 // Lista de todos los botones de sección y cajas
 const toggleButtons = document.querySelectorAll('.toggle-btn');
 const infoBoxes = document.querySelectorAll('.info-box');
@@ -148,17 +144,6 @@ function updateLangButtons(activeLang) {
   langEs.classList.toggle('active', activeLang === 'es');
 }
 
-// Función para actualizar el estado de los botones de versión
-function updateVersionButtons() {
-  if (version === 'default') {
-    versionDefault.classList.add('active');
-    versionAlt.classList.remove('active');
-  } else if (version === 'alt') {
-    versionAlt.classList.add('active');
-    versionDefault.classList.remove('active');
-  }
-}
-
 // Cargar el archivo JSON con la información
 fetch(jsonFile)
   .then(response => response.json())
@@ -177,21 +162,6 @@ fetch(jsonFile)
 // Eventos para cambiar de idioma
 langEn.addEventListener('click', () => { loadLang('en'); updateLangButtons('en'); });
 langEs.addEventListener('click', () => { loadLang('es'); updateLangButtons('es'); });
-
-// Eventos para cambiar de versión
-if (versionDefault && versionAlt) {
-  versionDefault.addEventListener('click', () => {
-    if (version !== 'default') {
-      window.location.search = '?version=default';
-    }
-  });
-  versionAlt.addEventListener('click', () => {
-    if (version !== 'alt') {
-      window.location.search = '?version=alt';
-    }
-  });
-  updateVersionButtons();
-}
 
 // Eventos para mostrar/ocultar secciones
 toggleButtons.forEach(btn => {
